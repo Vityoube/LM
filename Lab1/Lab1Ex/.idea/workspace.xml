@@ -204,7 +204,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Lab2/Lab2ex" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -751,12 +751,12 @@
       <workItem from="1494363900745" duration="219000" />
       <workItem from="1494858627347" duration="4487000" />
       <workItem from="1495364524027" duration="321000" />
-      <workItem from="1495388733131" duration="237000" />
+      <workItem from="1495388733131" duration="517000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11617000" />
+    <option name="totallyTimeSpent" value="11897000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1535" height="904" extended-state="6" />
