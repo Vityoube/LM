@@ -76,10 +76,16 @@ public class NFAAutomata {
                 }
             }
             automata.printPath();
+            automata.clearCurrentStates();
+            automata.addCurrentState(qb);
             line=reader.readLine();
         }
 
 
+    }
+
+    public void clearCurrentStates() {
+        currentStates.clear();
     }
 
     public void printPath() {
@@ -87,11 +93,15 @@ public class NFAAutomata {
     }
 
     public void printCurrentStates() {
-        System.out.println("Current states: "+ Joiner.on(", ").join(currentStates));
+        if (currentStates.size()!=1)
+            System.out.println("Current states: "+ Joiner.on(", ").join(currentStates));
+        else
+            System.out.println("Current state: "+currentStates.get(0));
     }
 
     public void transitionFunction(String symbol){
         List<NFAState> temporalCurrentStates=new ArrayList<NFAState>();
+        List<NFAState> temporalStatesToRemove=new ArrayList<NFAState>();
         for (int i=0;i<currentStates.size();i++){
             NFAState state=currentStates.get(i);
             if (state.containsSymbol(symbol)){
@@ -113,9 +123,12 @@ public class NFAAutomata {
                     currentStates.set(i,nextState);
                     message+="Going from state: "+state+" to state: "+nextState+ " through symbol "+symbol+"\n";
                 }
+            } else {
+                temporalStatesToRemove.add(state);
             }
         }
         currentStates.addAll(temporalCurrentStates);
+        currentStates.removeAll(temporalStatesToRemove);
         printCurrentStates();
     }
 
