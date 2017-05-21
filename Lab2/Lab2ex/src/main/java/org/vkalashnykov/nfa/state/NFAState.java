@@ -10,27 +10,27 @@ public class NFAState {
     private boolean accept;
     private boolean begin;
     private String name;
-    private List<String> symbols;
+    private List<String> symbols=new ArrayList<>();
     private List<NFAState> nextStates=new ArrayList<NFAState>();
 
-    public NFAState(String name,List<String>symbol,boolean begin) {
+    public NFAState(String name,List<String>symbols,boolean begin) {
         this.begin = begin;
         this.name = name;
-        this.symbols=symbols;
+        this.symbols.addAll(symbols);
     }
 
     public NFAState(String name,List<String> symbols, boolean begin, boolean accept){
         this.begin = begin;
         this.name = name;
         this.accept=accept;
-        this.symbols=symbols;
+        this.symbols.addAll(symbols);
     }
 
     public NFAState(String name,List<String> symbols) {
         this.name = name;
         this.accept=false;
         this.begin=false;
-        this.symbols=symbols;
+        this.symbols.addAll(symbols);
     }
 
     public boolean isAccept() {
@@ -67,5 +67,14 @@ public class NFAState {
         if (symbols.contains(symbol))
             return true;
         return false;
+    }
+
+    public List<NFAState> getNextStates() {
+        return nextStates;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }
