@@ -32,6 +32,16 @@ public class NFAAutomata {
                 q7=new NFAState("q7",Arrays.asList("7")),
                 q8= new NFAState("q8",Arrays.asList("8")),
                 q9=new NFAState("q9",Arrays.asList("9")),
+                q00=new NFAState("q00",Arrays.asList("1","2","3","4","5","6","7","8","9")),
+                q10=new NFAState("q10",Arrays.asList("0","2","3","4","5","6","7","8","9")),
+                q20=new NFAState("q20",Arrays.asList("0","1","3","4","5","6","7","8","9")),
+                q30=new NFAState("q30",Arrays.asList("0","1","2","4","5","6","7","8","9")),
+                q40=new NFAState("q40",Arrays.asList("0","1","2","3","5","6","7","8","9")),
+                q50=new NFAState("q50",Arrays.asList("0","1","2","3","4","6","7","8","9")),
+                q60=new NFAState("q60",Arrays.asList("0","1","2","3","4","5","7","8","9")),
+                q70=new NFAState("q70",Arrays.asList("0","1","2","3","4","5","6","8","9")),
+                q80=new NFAState("q80",Arrays.asList("0","1","2","3","4","5","6","7","9")),
+                q90=new NFAState("q90",Arrays.asList("0","1","2","3","4","5","6","7","8")),
                 qe=new NFAState("qe",Arrays.asList("0","1","2","3","4","5","6","7","8","9"),
                         false,true);
         qb.addNextState(q0);
@@ -45,16 +55,26 @@ public class NFAAutomata {
         qb.addNextState(q8);
         qb.addNextState(q9);
         qb.addNextState(qb);
-        q0.addNextState(qe);
-        q1.addNextState(qe);
-        q2.addNextState(qe);
-        q3.addNextState(qe);
-        q4.addNextState(qe);
-        q5.addNextState(qe);
-        q6.addNextState(qe);
-        q7.addNextState(qe);
-        q8.addNextState(qe);
-        q9.addNextState(qe);
+        q0.addNextState(q00);
+        q1.addNextState(q10);
+        q2.addNextState(q20);
+        q3.addNextState(q30);
+        q4.addNextState(q40);
+        q5.addNextState(q50);
+        q6.addNextState(q60);
+        q7.addNextState(q70);
+        q8.addNextState(q80);
+        q9.addNextState(q90);
+        q00.addNextState(qe);
+        q10.addNextState(qe);
+        q20.addNextState(qe);
+        q30.addNextState(qe);
+        q40.addNextState(qe);
+        q50.addNextState(qe);
+        q60.addNextState(qe);
+        q70.addNextState(qe);
+        q80.addNextState(qe);
+        q90.addNextState(qe);
         qe.addNextState(qe);
         BufferedReader reader=new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Enter the string for automata: ");

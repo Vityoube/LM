@@ -27,17 +27,17 @@
       <file leaf-file-name="NFAAutomata.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/org/vkalashnykov/nfa/NFAAutomata.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="299">
-              <caret line="102" column="71" lean-forward="true" selection-start-line="102" selection-start-column="71" selection-end-line="102" selection-end-column="71" />
+            <state relative-caret-position="236">
+              <caret line="20" column="30" lean-forward="true" selection-start-line="20" selection-start-column="30" selection-end-line="20" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#480#490#0" expanded="true" />
-                <element signature="e#3020#3021#0" expanded="true" />
-                <element signature="e#3057#3058#0" expanded="true" />
-                <element signature="e#3088#3089#0" expanded="true" />
-                <element signature="e#3131#3132#0" expanded="true" />
-                <element signature="e#3500#3510#0" expanded="true" />
-                <element signature="e#3573#3583#0" expanded="true" />
+                <element signature="e#4250#4251#0" expanded="true" />
+                <element signature="e#4287#4288#0" expanded="true" />
+                <element signature="e#4318#4319#0" expanded="true" />
+                <element signature="e#4361#4362#0" expanded="true" />
+                <element signature="e#4730#4740#0" expanded="true" />
+                <element signature="e#4803#4813#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -737,12 +737,12 @@
       <option name="presentableId" value="Default" />
       <updated>1494858412286</updated>
       <workItem from="1494858417387" duration="209000" />
-      <workItem from="1495389252190" duration="8550000" />
+      <workItem from="1495389252190" duration="10120000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8759000" />
+    <option name="totallyTimeSpent" value="10329000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1535" height="904" extended-state="6" />
@@ -791,7 +791,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/vkalashnykov/nfa/NFAAutomata.java</url>
-          <line>69</line>
+          <line>89</line>
           <properties />
         </line-breakpoint>
       </breakpoints>
@@ -833,17 +833,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/org/vkalashnykov/nfa/NFAAutomata.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="102" column="71" lean-forward="true" selection-start-line="102" selection-start-column="71" selection-end-line="102" selection-end-column="71" />
+        <state relative-caret-position="236">
+          <caret line="20" column="30" lean-forward="true" selection-start-line="20" selection-start-column="30" selection-end-line="20" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#480#490#0" expanded="true" />
-            <element signature="e#3020#3021#0" expanded="true" />
-            <element signature="e#3057#3058#0" expanded="true" />
-            <element signature="e#3088#3089#0" expanded="true" />
-            <element signature="e#3131#3132#0" expanded="true" />
-            <element signature="e#3500#3510#0" expanded="true" />
-            <element signature="e#3573#3583#0" expanded="true" />
+            <element signature="e#4250#4251#0" expanded="true" />
+            <element signature="e#4287#4288#0" expanded="true" />
+            <element signature="e#4318#4319#0" expanded="true" />
+            <element signature="e#4361#4362#0" expanded="true" />
+            <element signature="e#4730#4740#0" expanded="true" />
+            <element signature="e#4803#4813#0" expanded="true" />
           </folding>
         </state>
       </provider>
