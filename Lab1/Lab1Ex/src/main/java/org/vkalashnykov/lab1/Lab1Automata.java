@@ -19,7 +19,6 @@ public class Lab1Automata {
         Lab1State q5=new Lab1State(5,"q5");
         Lab1State q6=new Lab1State(6,"q6");
         Lab1State q7=new Lab1State(7,"q7");
-        Lab1State finalState=new Lab1State(7,"final");
         q0.setNextStates(q1,q2,q5,q0);
         q1.setNextStates(q2,q3,q6,q1);
         q2.setNextStates(q3,q4,q0,q2);
@@ -27,17 +26,13 @@ public class Lab1Automata {
         q4.setNextStates(q5,q6,q0,q4);
         q5.setNextStates(q6,q7,q0,q5);
         q6.setNextStates(q7,q0,q0,q6);
-        q7.setNextStates(q1,q2,q5,finalState);
-        finalState.setAccept(true);
+        q7.setNextStates(q7,q7,q7,q7);
+        q7.setAccept(true);
         Lab1Automata automata=new Lab1Automata(q0);
         BufferedReader coinReader=new BufferedReader(new InputStreamReader(System.in));
         String coinInsert=coinReader.readLine();
         while (!"e".equals(coinInsert)) {
             automata.goingFunction(coinInsert);
-            if (automata.isCurrentStateAccept()){
-                System.out.println("Got to accept state. Take your ticket! Returning to state \"q0\"");
-                automata.setCurrentState(q0);
-            }
             coinInsert=coinReader.readLine();
         }
 
@@ -73,9 +68,15 @@ public class Lab1Automata {
                 break;
             case "":
                 this.currentState=this.currentState.getNextEmptyState();
-                if (currentState.getStateName().equals(temporal.getStateName()))
+                if (currentState.getStateName().equals(temporal.getStateName())) {
                     System.out.println("Current state is not accept. Cannot print a ticket.");
-                return;
+                    return;
+                }
+                else if(currentState.isAccept()) {
+                    System.out.println("Got to accept state. Take your ticket!");
+                    return;
+                }
+                break;
             case "c":
                 System.out.println("Current state: "+currentState.getStateName());
                 return;
