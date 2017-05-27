@@ -4,20 +4,25 @@ package org.vkalashnykov.tm;
  * Created by vkalashnykov on 5/27/17.
  */
 public class State {
-    private int name;
+    private String name;
 
     public State() {
     }
 
-    public State(int name) {
+    public State(String name) {
         this.name = name;
     }
 
-    public int getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(int name) {
+    public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }
