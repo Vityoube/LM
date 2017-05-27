@@ -54,7 +54,7 @@ public class Tape {
             symbolToRead=tapeSymbols.get(currentPosition);
         else {
             symbolToRead = "'empty'";
-            return null;
+            return "'empty'";
         }
         return tapeSymbols.get(currentPosition);
     }

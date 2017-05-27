@@ -33,11 +33,11 @@ public class TuringMachine {
                 ArrayList<String> symbols= new ArrayList<String>(Arrays.asList(line.split("")));
                 Collections.reverse(symbols);
                 for (int i=0; i<symbols.size();i++){
-                    if (Pattern.matches("[\\s]",symbols.get(i)))
-                        symbols.set(i,null);
+                    if (Pattern.matches("[\\s]{1}",symbols.get(i)))
+                        symbols.set(i,"'empty'");
                 }
                 tape=new Tape(symbols);
-                while (tape.readSymbol()==null){
+                while ("'empty'".equals(tape.readSymbol())){
                         currentState=q0;
                         message+=tape+"\nCurrent state "+currentState+"\n";
                         tape.goNext();
@@ -47,7 +47,7 @@ public class TuringMachine {
                     currentState=q0;
                     message+=tape+"\nCurrent state "+currentState+"\n";
                     tape.goNext();
-                    while (tape.readSymbol()!=null || !"0".equals(tape.readSymbol())){
+                    while (!"'empty'".equals(tape.readSymbol()) && !"0".equals(tape.readSymbol())){
                         tape.writeSymbol("0");
                         currentState=q1;
                         message+=tape+"\nCurrent state "+currentState+"\n";
@@ -61,17 +61,18 @@ public class TuringMachine {
                     currentState=q1;
                     message+=tape+"\nCurrent state "+currentState+"\n";
                     tape.goNext();
-                    while (tape.readSymbol()!=null && !"0".equals(tape.readSymbol())){
+                    if("'empty'".equals(tape.readSymbol()) || "0".equals(tape.readSymbol())){
                         tape.writeSymbol("0");
                         currentState=q1;
                         message+=tape+"\nCurrent state "+currentState+"\n";
                         tape.goNext();
+                    } else {
+                        tape.writeSymbol("1");
+                        currentState=q1;
+                        message+=tape+"\nCurrent state "+currentState+"\n";
+                        tape.goNext();
                     }
-                    tape.writeSymbol("0");
-                    currentState=q1;
-                    message+=tape+"\nCurrent state "+currentState+"\n";
-                    tape.goNext();
-                    while (tape.readSymbol()!=null && !"0".equals(tape.readSymbol())){
+                    while (!"'empty'".equals(tape.readSymbol()) && !"0".equals(tape.readSymbol())){
                         tape.writeSymbol("0");
                         currentState=q1;
                         message+=tape+"\nCurrent state "+currentState+"\n";
@@ -80,14 +81,17 @@ public class TuringMachine {
                     tape.writeSymbol("1");
                     currentState=q2;
                     message+=tape+"\nCurrent state "+currentState+"\n";
+                    if (!"'empty'".equals(tape.readSymbol())){
+                        currentState=q0;
+                    }
                 }
                 if (currentState.equals(q2)){
                     tape.setWriting(false);
                     List<String> result=tape.getTapeSymbols();
                     Collections.reverse(result);
                     message+="Operation successfull. Result: " +
-                            result.stream().map(Object::toString).
-                                    collect(Collectors.joining())+
+                            result.stream().map(Object::toString).filter(element -> !element.equals("'empty'"))
+                                    .collect(Collectors.joining())+
                             ". Current State: "+currentState+"\nEnter new string " +
                             "or type q t o quit";
                 } else {
