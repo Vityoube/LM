@@ -27,75 +27,90 @@ public class TuringMachine {
         System.out.println("Enter string or type q to quit");
         String line=reader.readLine();
         while(!"q".equals(line)){
-            if (Pattern.matches("[\\s]*[0|1]+[\\s]*[0|1]*[\\s]*",line)){
-                State q0=new State("q0"),q1=new State("q1"), q2=new State("q2");
-                setCurrentState(q0);
+            if (Pattern.matches("[0|1|e]+",line)){
+                State q00=new State("q00"),q01=new State("q01"), qf=new State("qf"),
+                        q10=new State("q10"),q11=new State("q11"),q21=new State("q21"),
+                        qe=new State("qe");
+                setCurrentState(q00);
                 ArrayList<String> symbols= new ArrayList<String>(Arrays.asList(line.split("")));
                 Collections.reverse(symbols);
-                for (int i=0; i<symbols.size();i++){
-                    if (Pattern.matches("[\\s]{1}",symbols.get(i)))
-                        symbols.set(i,"'empty'");
-                }
                 tape=new Tape(symbols);
-                while ("'empty'".equals(tape.readSymbol())){
-                        currentState=q0;
+                while ("e".equals(tape.readSymbol())){
+                        currentState=q00;
                         message+=tape+"\nCurrent state "+currentState+"\n";
                         tape.goNext();
                 }
                 if ("0".equals(tape.readSymbol())){
                     tape.writeSymbol("1");
-                    currentState=q0;
+                    currentState=q10;
                     message+=tape+"\nCurrent state "+currentState+"\n";
                     tape.goNext();
-                    while (!"'empty'".equals(tape.readSymbol()) && !"0".equals(tape.readSymbol())){
+                    while (!"e".equals(tape.readSymbol()) && !"0".equals(tape.readSymbol())){
                         tape.writeSymbol("0");
-                        currentState=q1;
+                        currentState=q10;
                         message+=tape+"\nCurrent state "+currentState+"\n";
                         tape.goNext();
                     }
                     tape.writeSymbol("1");
-                    currentState=q2;
+                    currentState=qf;
                     message+=tape+"\nCurrent state "+currentState+"\n";
-                } else {
+                } else if ("1".equals(tape.readSymbol())){
                     tape.writeSymbol("0");
-                    currentState=q1;
+                    currentState=q01;
                     message+=tape+"\nCurrent state "+currentState+"\n";
                     tape.goNext();
-                    if("'empty'".equals(tape.readSymbol()) || "0".equals(tape.readSymbol())){
+                    if ("e".equals(tape.readSymbol())){
                         tape.writeSymbol("0");
-                        currentState=q1;
+                        currentState=q11;
                         message+=tape+"\nCurrent state "+currentState+"\n";
                         tape.goNext();
-                    } else {
+                        if ("e".equals(tape.readSymbol())){
+                            tape.writeSymbol("1");
+                            currentState=qf;
+                            message+=tape+"\nCurrent state "+currentState+"\n";
+                        } else{
+                            currentState=qe;
+                        }
+                    }
+                    else if("0".equals(tape.readSymbol())){
+                        tape.writeSymbol("0");
+                        currentState=q21;
+                        message+=tape+"\nCurrent state "+currentState+"\n";
+                        tape.goNext();
+                        while (!"e".equals(tape.readSymbol()) && !"0".equals(tape.readSymbol())){
+                            tape.writeSymbol("0");
+                            currentState=q11;
+                            message+=tape+"\nCurrent state "+currentState+"\n";
+                            tape.goNext();
+                        }
                         tape.writeSymbol("1");
-                        currentState=q1;
+                        currentState=qf;
+                        message+=tape+"\nCurrent state "+currentState+"\n";
+                        continue;
+                    } else if ("1".equals(tape.readSymbol())){
+                        tape.writeSymbol("1");
+                        currentState=q21;
                         message+=tape+"\nCurrent state "+currentState+"\n";
                         tape.goNext();
-                    }
-                    while (!"'empty'".equals(tape.readSymbol()) && !"0".equals(tape.readSymbol())){
-                        tape.writeSymbol("0");
-                        currentState=q1;
+                        while (!"e".equals(tape.readSymbol()) && !"0".equals(tape.readSymbol())){
+                            tape.writeSymbol("0");
+                            currentState=q21;
+                            message+=tape+"\nCurrent state "+currentState+"\n";
+                            tape.goNext();
+                        }
+                        tape.writeSymbol("1");
+                        currentState=qf;
                         message+=tape+"\nCurrent state "+currentState+"\n";
-                        tape.goNext();
-                    }
-                    tape.writeSymbol("1");
-                    currentState=q2;
-                    message+=tape+"\nCurrent state "+currentState+"\n";
-                    if (!"'empty'".equals(tape.readSymbol())){
-                        currentState=q0;
                     }
                 }
-                if (currentState.equals(q2)){
-                    tape.setWriting(false);
-                    List<String> result=tape.getTapeSymbols();
-                    Collections.reverse(result);
-                    message+="Operation successfull. Result: " +
-                            result.stream().map(Object::toString).filter(element -> !element.equals("'empty'"))
-                                    .collect(Collectors.joining())+
-                            ". Current State: "+currentState+"\nEnter new string " +
-                            "or type q t o quit";
-                } else {
-                    message+="Wrong string! Try another or type q to quit";
+                if (currentState==qf){
+                    List<String> results=tape.getTapeSymbols();
+                    Collections.reverse(results);
+                    message+="Operation successful. Result: "+results.stream().map(Object::toString).
+                            filter(result -> !result.equals("e")).collect(Collectors.joining())
+                            +". Current State: "+currentState;
+                } else{
+                    message+="Wrong string! Try again";
                 }
             } else
                 System.out.println("Wrong input! Try again.");

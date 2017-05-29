@@ -53,8 +53,8 @@ public class Tape {
         if (currentPosition<tapeSymbols.size())
             symbolToRead=tapeSymbols.get(currentPosition);
         else {
-            symbolToRead = "'empty'";
-            return "'empty'";
+            symbolToRead = "e";
+            return "e";
         }
         return tapeSymbols.get(currentPosition);
     }
