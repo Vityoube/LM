@@ -28,8 +28,8 @@ public class ONP extends Application{
         String output="";
         for (String symbol : symbols){
             switch (symbol){
-                case "+":
                 case "-":
+                case "+":
                 case "*":
                 case "/":
                 case "^":
@@ -47,7 +47,27 @@ public class ONP extends Application{
                 case "7":
                 case "8":
                 case "9":
-                   output+=symbol+" ";
+                case "-0":
+                case "-1":
+                case "-2":
+                case "-3":
+                case "-4":
+                case "-5":
+                case "-6":
+                case "-7":
+                case "-8":
+                case "-9":
+                case "+0":
+                case "+1":
+                case "+2":
+                case "+3":
+                case "+4":
+                case "+5":
+                case "+6":
+                case "+7":
+                case "+8":
+                case "+9":
+                    output+=symbol+" ";
                     break;
                 case "(":
                     stack.push(symbol);
@@ -56,6 +76,40 @@ public class ONP extends Application{
                     while (!"(".equals(stack.peek()))
                         output+=stack.pop()+" ";
                     stack.pop();
+                    break;
+                case "0(":
+                case "1(":
+                case "2(":
+                case "3(":
+                case "4(":
+                case "5(":
+                case "6(":
+                case "7(":
+                case "8(":
+                case "9(":
+                case "-0(":
+                case "-1(":
+                case "-2(":
+                case "-3(":
+                case "-4(":
+                case "-5(":
+                case "-6(":
+                case "-7(":
+                case "-8(":
+                case "-9(":
+                case "+0(":
+                case "+1(":
+                case "+2(":
+                case "+3(":
+                case "+4(":
+                case "+5(":
+                case "+6(":
+                case "+7(":
+                case "+8(":
+                case "+9(":
+                    stack.push("*");
+                    stack.push("(");
+                    output+=symbol.substring(0,symbol.indexOf("("))+" ";
                     break;
                 default:
                     System.out.println("Wrong input.Try again.");

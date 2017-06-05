@@ -6,12 +6,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.vkalashnykov.onp.ONP">
    <children>
-      <TextField layoutX="144.0" layoutY="72.0" prefHeight="26.0" prefWidth="407.0" promptText="Enter expression in normal notation" fx:id="input" />
-      <TextField editable="false" layoutX="144.0" layoutY="211.0" prefHeight="26.0" prefWidth="407.0" promptText="Result" fx:id="output"/>
-      <Button layoutX="241.0" layoutY="137.0" mnemonicParsing="false" text="Convert to RPN" onAction="#convert"/>
+      <TextField fx:id="input" layoutX="144.0" layoutY="72.0" prefHeight="26.0" prefWidth="407.0" promptText="Enter expression in normal notation" />
+      <TextField fx:id="output" editable="false" layoutX="144.0" layoutY="211.0" prefHeight="26.0" prefWidth="407.0" promptText="Result" />
+      <Button layoutX="241.0" layoutY="137.0" mnemonicParsing="false" onAction="#convert" text="Convert to RPN" defaultButton="true"/>
       <Label layoutX="158.0" layoutY="28.0" text="Reverse Polish Notation">
          <font>
             <Font size="24.0" />
